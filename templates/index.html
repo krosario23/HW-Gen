@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework Name Generator</title>
+</head>
+<body>
+    <h2>Generate Named Homework Packets</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload PDF Template:</label><br>
+        <input type="file" name="pdf" required><br><br>
+
+        <label>Paste Student Names (one per line):</label><br>
+        <textarea name="names" rows="10" cols="40" placeholder="Alice&#10;Bob&#10;Carlos"></textarea><br><br>
+
+        <button type="submit">Generate PDF</button>
+    </form>
+</body>
+</html>
