@@ -8,5 +8,3 @@ Here's how it works:
 
 Tech stack: It's a Python Flask web app using pymupdf (also known as PyMuPDF/fitz) to manipulate the PDFs — specifically to find the "Name:" text on each page, white it out, and overwrite it with the student's name.
 Practical use case: A teacher could upload a blank homework sheet, paste in a class roster, and instantly get a ready-to-print PDF with every student's name already filled in — no manual copy-pasting needed.
-
-README written by Claude
