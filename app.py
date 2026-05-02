@@ -12,8 +12,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 
-def create_packet(main_path, temp_path, names, output_path):
+def create_packet(main_path, temp_path, names, output_path, extra_copies):
     main_doc = pymupdf.open(main_path)
+    temp_doc = pymupdf.open(temp_path)
+
+    for _ in range(0, extra_copies - 1):
+        main_doc.insert_pdf(temp_doc)
 
     for name in names:
         temp_doc = pymupdf.open(temp_path)
@@ -41,6 +45,9 @@ def index():
     if request.method == "POST":
         pdf_file = request.files["pdf"]
         names_text = request.form["names"]
+        extra_copies = int(request.form["extra_copies"])
+        
+        print(extra_copies)
 
         names = [n.strip() for n in names_text.splitlines() if n.strip()]
 
@@ -52,7 +59,7 @@ def index():
         pdf_file.save(template_path)
         shutil.copy(template_path, copy_path)
 
-        create_packet(template_path, copy_path, names, output_path)
+        create_packet(template_path, copy_path, names, output_path, extra_copies)
 
         return send_file(output_path, as_attachment=True)
 
